@@ -17,12 +17,12 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false
  */
 function isAllTrue(array, fn) {
-    if ( typeof(array) !== "object" || array.length === 0) {
-        return new Error('empty array');
+    if ( !Array.isArray(array) || array.length === 0) {
+        throw new Error('empty array');
     }
 
     if ( typeof(fn) !== "function" ) {
-        return new Error('fn is not a function');
+        throw new Error('fn is not a function');
     }
 
     for (let i = 0; i < array.length; i++) {
