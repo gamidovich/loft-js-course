@@ -119,7 +119,56 @@ function returnBadArguments(fn, ...args) {
    - number не является числом (с текстом "number is not a number")
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator() {
+function calculator(number = 0) {
+    if ( !isFinite(number) ) {
+        throw new Error('number is not a number');
+    }
+
+    const obj = {
+        sum: function (...args) {
+            let sum = number;
+
+
+            args.forEach(function (item) {
+                sum += item;
+            });
+
+            return sum;
+        },
+        dif: function (...args) {
+            let result = number;
+
+            args.forEach(function (item) {
+                result -= item;
+            });
+
+            return result;
+        },
+        div: function (...args) {
+            let result = number;
+
+            args.forEach(function (item) {
+                if (item === 0) {
+                    throw new Error('division by 0');
+                }
+
+                result = result / item;
+            });
+
+            return result;
+        },
+        mul: function (...args) {
+            let result = number;
+
+            args.forEach(function (item) {
+                result *= item;
+            });
+
+            return result;
+        }
+    };
+
+    return obj;
 }
 
 /* При решении задач, пострайтесь использовать отладчик */
